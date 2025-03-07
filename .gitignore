@@ -1,1 +1,9 @@
 /venv
+*/data
+*/output
+/data
+/output
+/__pycache__
+*/__pycache__
+*.wrl
+*.root
