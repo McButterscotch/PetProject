@@ -33,7 +33,7 @@ def add_vereos_digitizer_v1(sim, pet, output):
     hc = sim.add_actor("DigitizerHitsCollectionActor", "Hits")
     hc.authorize_repeated_volumes = True
     hc.attached_to = crystal.name
-    hc.output = output
+    # hc.output_file = output
     hc.attributes = [
         "PostPosition",
         "TotalEnergyDeposit",
@@ -61,7 +61,7 @@ def add_vereos_digitizer_v1(sim, pet, output):
 
     # energy blurring
     eb = sim.add_actor("DigitizerBlurringActor", "Singles3")
-    eb.authorize_repeated_volume = True
+    eb.authorize_repeated_volumes = True
     eb.output_filename = output
     eb.input_digi_collection = "Singles2"
     eb.blur_attribute = "TotalEnergyDeposit"
@@ -71,7 +71,7 @@ def add_vereos_digitizer_v1(sim, pet, output):
 
     # time blurring
     tb = sim.add_actor("DigitizerBlurringActor", "Singles4")
-    tb.authorize_repeated_volume = True
+    tb.authorize_repeated_volumes = True
     tb.output_filename = output
     tb.input_digi_collection = "Singles3"
     tb.blur_attribute = "GlobalTime"
@@ -81,7 +81,7 @@ def add_vereos_digitizer_v1(sim, pet, output):
 
     # EnergyWindows
     ew = sim.add_actor("DigitizerEnergyWindowsActor", "Singles5")
-    ew.authorize_repeated_volume = True
+    ew.authorize_repeated_volumes = True
     ew.output_filename = output
     ew.input_digi_collection = tb.name
     ew.channels = [{"name": ew.name, "min": 449.68 * keV, "max": 613.20 * keV}]
