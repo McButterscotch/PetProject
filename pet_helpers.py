@@ -32,8 +32,8 @@ def add_vereos_digitizer_v1(sim, pet, output):
     crystal = sim.volume_manager.get_volume(f"{pet.name}_crystal")
     hc = sim.add_actor("DigitizerHitsCollectionActor", "Hits")
     hc.authorize_repeated_volumes = True
-    hc.attached_to = crystal.name
-    # hc.output_file = output
+    hc.attached_to = crystal
+    hc.output_filename = output
     hc.attributes = [
         "PostPosition",
         "TotalEnergyDeposit",

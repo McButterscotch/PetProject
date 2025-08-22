@@ -30,7 +30,6 @@ if __name__ == "__main__":
     data_path = Path("data")
     output_path = Path("output")
     
-
     # world
     world = sim.world
     world.size = [2 * m, 2 * m, 2 * m]
@@ -87,10 +86,10 @@ if __name__ == "__main__":
     output = output_path / f"output_vereos.root"
     add_vereos_digitizer_v1(sim, pet, output)
 
-    # add stat actor - Apparently this crashes the simulation. Do know why.
-    # stats = sim.add_actor("SimulationStatisticsActor", "Stats")
-    # stats.track_types_flag = True
-    # stats.user_output = Path("output") / "stats_vereos.txt"
+    # add stat actor - Apparently this crashes the simulation. Dont know why.
+    stats = sim.add_actor("SimulationStatisticsActor", "Stats")
+    stats.track_types_flag = True
+    stats.user_output = Path("output") / "stats_vereos.txt"
 
     # timing
     sim.run_timing_intervals = [[0, 2.0 * sec]]
