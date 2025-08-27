@@ -8,8 +8,8 @@ if __name__ == "__main__":
     sim = gate.Simulation()
 
     # ---- options
-    simple = True                       # 2 modules vs 18
-    sim.visu = True                     # visualization (see note below)
+    simple = False                       # 2 modules vs 18
+    sim.visu = False                     # visualization (see note below)
     sim.visu_type = "vrml"              # or "vrml_file_only" to avoid GUI
     sim.visu_filename = "scene.wrl"     # Gate 10: required to save VRML/GDML
     sim.random_seed = "auto"
@@ -50,13 +50,12 @@ if __name__ == "__main__":
 
     # ---- Sources (two Na-22 positron sources)
     # Gate 10 helper for β+ yield fraction:
-    # total_yield = gate.sources.generic.get_rad_yield("Na22")
 
     source1 = sim.add_source("GenericSource", "hot_sphere_source_1")
     source1.attached_to = "world"
     source1.particle = "e+"
     source1.energy.type = "Na22"          # built-in β+ spectrum
-    source1.activity = 100000 * Bq
+    source1.activity = 10000 * Bq
     source1.half_life = 2.6 * 365.25 * 24 * 3600 * sec
     source1.position.translation = [-5 * cm, 0, 0]
 
@@ -64,7 +63,7 @@ if __name__ == "__main__":
     source2.attached_to = "world"
     source2.particle = "e+"
     source2.energy.type = "Na22"
-    source2.activity = 100000 * Bq
+    source2.activity = 10000 * Bq
     source2.half_life = 2.6 * 365.25 * 24 * 3600 * sec
     source2.position.translation = [5 * cm, 0, 0]
 
