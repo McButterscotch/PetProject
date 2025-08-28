@@ -1,10 +1,6 @@
-# plot_pet_transaxial_hits.py
-# usage: python plot_pet_transaxial_hits.py output/output_vereos.root
-
 import sys, numpy as np, uproot, matplotlib.pyplot as plt
 
-# ROOT_PATH = sys.argv[1] if len(sys.argv) > 1 else "output/output_vereos.root"
-ROOT_PATH = "output/output_vereos.root"
+ROOT_PATH = sys.argv[1] 
 PHOTOPEAK_WINDOW_KEV = (350.0, 650.0)
 SOURCE_POS_MM = [(-50.0, 0.0, 0.0), (50.0, 0.0, 0.0)]  # from your script
 
@@ -93,6 +89,7 @@ def main():
     # Overlay sources projected into the same plane
     for sx, sy, sz in SOURCE_POS_MM:
         S = [sx, sy, sz]
+        print(S)
         plt.scatter(S[a], S[b], marker="x", s=80)
 
     plt.gca().set_aspect("equal", adjustable="box")

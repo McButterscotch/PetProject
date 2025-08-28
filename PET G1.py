@@ -4,6 +4,8 @@ import opengate.contrib.pet.philipsvereos as pet_vereos
 from scripts.pet_helpers import add_vereos_digitizer_v1
 from opengate.geometry.utility import get_circular_repetition
 
+experiment_name = "validate pos2"
+
 if __name__ == "__main__":
     sim = gate.Simulation()
 
@@ -23,7 +25,7 @@ if __name__ == "__main__":
     Bq  = gate.g4_units.Bq
 
     # ---- folders
-    output_path = Path("output")
+    output_path = Path("data/output/posvalidation")
     output_path.mkdir(parents=True, exist_ok=True)
 
     # ---- world
@@ -57,15 +59,15 @@ if __name__ == "__main__":
     source1.energy.type = "Na22"          # built-in β+ spectrum
     source1.activity = 10000 * Bq
     source1.half_life = 2.6 * 365.25 * 24 * 3600 * sec
-    source1.position.translation = [-5 * cm, 0, 0]
+    source1.position.translation = [-5 * cm, 5 * cm, 0]
 
     source2 = sim.add_source("GenericSource", "hot_sphere_source_2")
     source2.attached_to = "world"
     source2.particle = "e+"
     source2.energy.type = "Na22"
-    source2.activity = 10000 * Bq
+    source2.activity = 5000 * Bq
     source2.half_life = 2.6 * 365.25 * 24 * 3600 * sec
-    source2.position.translation = [5 * cm, 0, 0]
+    source2.position.translation = [5 * cm, -5 * cm, 0]
 
     # ---- physics
     sim.physics_manager.physics_list_name = "G4EmStandardPhysics_option3"
@@ -73,14 +75,14 @@ if __name__ == "__main__":
     sim.physics_manager.set_production_cut("world", "all", 1 * m)
 
     # ---- PET digitizer (your helper)
-    output_root = output_path / "output_vereos.root"
+    output_root = output_path / f"output_{experiment_name}.root"
     add_vereos_digitizer_v1(sim, pet, output_root)
 
     # ---- stats actor
     stats = sim.add_actor("SimulationStatisticsActor", "Stats")
     stats.track_types_flag = True
     # IMPORTANT: use output_filename (Path or str). Do NOT use user_output.
-    stats.output_filename = output_path / "stats_vereos.txt"
+    stats.output_filename = output_path / f"stats_{experiment_name}.txt"
 
     # ---- timing
     sim.run_timing_intervals = [[0, 2.0 * sec]]
