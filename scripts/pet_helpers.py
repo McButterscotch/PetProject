@@ -8,7 +8,7 @@ import opengate.contrib.pet.philipsvereos as pet_vereos
 import opengate.contrib.phantoms.necr as phantom_necr
 
 
-def add_vereos_digitizer_v1(sim, pet, output):
+def add_vereos_digitizer_v1(sim, pet, output, energy_resolution=0.112, time_resolution=220.0):
     """
     add a  PET digitizer.
 
@@ -66,7 +66,7 @@ def add_vereos_digitizer_v1(sim, pet, output):
     eb.input_digi_collection = "Singles2"
     eb.blur_attribute = "TotalEnergyDeposit"
     eb.blur_method = "InverseSquare"
-    eb.blur_resolution = 0.112
+    eb.blur_resolution = energy_resolution
     eb.blur_reference_value = 511 * keV
 
     # time blurring
@@ -76,7 +76,7 @@ def add_vereos_digitizer_v1(sim, pet, output):
     tb.input_digi_collection = "Singles3"
     tb.blur_attribute = "GlobalTime"
     tb.blur_method = "Gaussian"
-    tb.blur_fwhm = 220.0 * ps
+    tb.blur_fwhm = time_resolution * ps
     #tb.blur_fwhm = 220.0 * ns
 
     # EnergyWindows
