@@ -59,8 +59,8 @@ if __name__ == "__main__":
     source1.energy.type = "Na22"          # built-in β+ spectrum
     source1.activity = 10000 * Bq
     source1.half_life = 2.6 * 365.25 * 24 * 3600 * sec
-    source1.position.translation = [0, 0, 1.5 * cm]
-    # source1.position.translation = [0, 0, 0.8 * cm] 
+    source1.position.translation = [0, 0, 15 * cm]
+    # source1.position.translation = [0, 0, 8 * cm] 
 
     # source2 = sim.add_source("GenericSource", "hot_sphere_source_2")
     # source2.attached_to = "world"
