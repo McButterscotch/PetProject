@@ -1,7 +1,7 @@
 import opengate as gate
 from pathlib import Path
 import opengate.contrib.pet.philipsvereos as pet_vereos
-from scripts.pet_helpers import add_vereos_digitizer_v1
+from tools.pet_helpers import add_vereos_digitizer_v1
 from opengate.geometry.utility import get_circular_repetition
 
 experiment_name = "experiment_b"
