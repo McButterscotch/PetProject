@@ -1,7 +1,7 @@
 import opengate as gate
 from pathlib import Path
 import opengate.contrib.pet.philipsvereos as pet_vereos
-from scripts.pet_helpers import add_vereos_digitizer_v1
+from tools.pet_helpers import add_vereos_digitizer_v1
 from opengate.geometry.utility import get_circular_repetition
 
 experiment_name = "validate pos2"
@@ -65,7 +65,7 @@ if __name__ == "__main__":
     source2.attached_to = "world"
     source2.particle = "e+"
     source2.energy.type = "Na22"
-    source2.activity = 5000 * Bq
+    source2.activity = 10000 * Bq
     source2.half_life = 2.6 * 365.25 * 24 * 3600 * sec
     source2.position.translation = [5 * cm, -5 * cm, 0]
 
