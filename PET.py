@@ -4,7 +4,11 @@ import opengate.contrib.pet.philipsvereos as pet_vereos
 from tools.pet_helpers import add_vereos_digitizer_v1
 from opengate.geometry.utility import get_circular_repetition
 
-experiment_name = "experiment_c"
+
+experiment_name = "validate pos2"
+# ---- folders
+output_path = Path("data/output/posvalidation")
+output_path.mkdir(parents=True, exist_ok=True)
 
 if __name__ == "__main__":
     sim = gate.Simulation()
@@ -24,9 +28,7 @@ if __name__ == "__main__":
     sec = gate.g4_units.s
     Bq  = gate.g4_units.Bq
 
-    # ---- folders
-    output_path = Path("data/output/exercises")
-    output_path.mkdir(parents=True, exist_ok=True)
+
 
     # ---- world
     world = sim.world
@@ -59,15 +61,15 @@ if __name__ == "__main__":
     source1.energy.type = "Na22"          # built-in β+ spectrum
     source1.activity = 10000 * Bq
     source1.half_life = 2.6 * 365.25 * 24 * 3600 * sec
-    source1.position.translation = [0, 0, 0]
+    source1.position.translation = [-5 * cm, 5 * cm, 0]
 
     source2 = sim.add_source("GenericSource", "hot_sphere_source_2")
     source2.attached_to = "world"
     source2.particle = "e+"
     source2.energy.type = "Na22"
-    source2.activity = 5000 * Bq
+    source2.activity = 10000 * Bq
     source2.half_life = 2.6 * 365.25 * 24 * 3600 * sec
-    source2.position.translation = [7 * cm, 7 * cm, 0]
+    source2.position.translation = [5 * cm, -5 * cm, 0]
 
     # ---- physics
     sim.physics_manager.physics_list_name = "G4EmStandardPhysics_option3"
